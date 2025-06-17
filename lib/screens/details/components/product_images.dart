@@ -4,10 +4,7 @@ import '../../../constants.dart';
 import '../../../models/Product.dart';
 
 class ProductImages extends StatefulWidget {
-  const ProductImages({
-    Key? key,
-    required this.product,
-  }) : super(key: key);
+  const ProductImages({super.key, required this.product});
 
   final Product product;
 
@@ -45,18 +42,19 @@ class _ProductImagesState extends State<ProductImages> {
               ),
             ),
           ],
-        )
+        ),
       ],
     );
   }
 }
 
 class SmallProductImage extends StatefulWidget {
-  const SmallProductImage(
-      {super.key,
-      required this.isSelected,
-      required this.press,
-      required this.image});
+  const SmallProductImage({
+    super.key,
+    required this.isSelected,
+    required this.press,
+    required this.image,
+  });
 
   final bool isSelected;
   final VoidCallback press;
@@ -81,7 +79,8 @@ class _SmallProductImageState extends State<SmallProductImage> {
           color: Colors.white,
           borderRadius: BorderRadius.circular(10),
           border: Border.all(
-              color: kPrimaryColor.withOpacity(widget.isSelected ? 1 : 0)),
+            color: kPrimaryColor.withOpacity(widget.isSelected ? 1 : 0),
+          ),
         ),
         child: Image.asset(widget.image),
       ),

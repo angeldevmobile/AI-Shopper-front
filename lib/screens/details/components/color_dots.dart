@@ -5,10 +5,7 @@ import '../../../constants.dart';
 import '../../../models/Product.dart';
 
 class ColorDots extends StatelessWidget {
-  const ColorDots({
-    Key? key,
-    required this.product,
-  }) : super(key: key);
+  const ColorDots({super.key, required this.product});
 
   final Product product;
 
@@ -28,16 +25,9 @@ class ColorDots extends StatelessWidget {
             ),
           ),
           const Spacer(),
-          RoundedIconBtn(
-            icon: Icons.remove,
-            press: () {},
-          ),
+          RoundedIconBtn(icon: Icons.remove, press: () {}),
           const SizedBox(width: 20),
-          RoundedIconBtn(
-            icon: Icons.add,
-            showShadow: true,
-            press: () {},
-          ),
+          RoundedIconBtn(icon: Icons.add, showShadow: true, press: () {}),
         ],
       ),
     );
@@ -45,11 +35,7 @@ class ColorDots extends StatelessWidget {
 }
 
 class ColorDot extends StatelessWidget {
-  const ColorDot({
-    Key? key,
-    required this.color,
-    this.isSelected = false,
-  }) : super(key: key);
+  const ColorDot({super.key, required this.color, this.isSelected = false});
 
   final Color color;
   final bool isSelected;
@@ -63,15 +49,13 @@ class ColorDot extends StatelessWidget {
       width: 40,
       decoration: BoxDecoration(
         color: Colors.transparent,
-        border:
-            Border.all(color: isSelected ? kPrimaryColor : Colors.transparent),
+        border: Border.all(
+          color: isSelected ? kPrimaryColor : Colors.transparent,
+        ),
         shape: BoxShape.circle,
       ),
       child: DecoratedBox(
-        decoration: BoxDecoration(
-          color: color,
-          shape: BoxShape.circle,
-        ),
+        decoration: BoxDecoration(color: color, shape: BoxShape.circle),
       ),
     );
   }

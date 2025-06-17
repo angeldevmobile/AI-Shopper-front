@@ -3,9 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../constants.dart';
 
 class OtpForm extends StatefulWidget {
-  const OtpForm({
-    Key? key,
-  }) : super(key: key);
+  const OtpForm({super.key});
 
   @override
   _OtpFormState createState() => _OtpFormState();
@@ -105,10 +103,7 @@ class _OtpFormState extends State<OtpForm> {
             ],
           ),
           SizedBox(height: MediaQuery.of(context).size.height * 0.15),
-          ElevatedButton(
-            onPressed: () {},
-            child: const Text("Continue"),
-          ),
+          ElevatedButton(onPressed: () {}, child: const Text("Continue")),
         ],
       ),
     );
