@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1086808983934",
+    "project_id": "aishopper-1a194",
+    "storage_bucket": "aishopper-1a194.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1086808983934:android:cce03a9a3551837eec8b2f",
+        "android_client_info": {
+          "package_name": "com.example.ai_shopper_online"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1086808983934-44hd9lei1u6clve1ifj1ej1n6bdijgvr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCpok7ybuKfAGeroj69mEzKiajWPx8ETRM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1086808983934-44hd9lei1u6clve1ifj1ej1n6bdijgvr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

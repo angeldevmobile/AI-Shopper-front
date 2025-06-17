@@ -1,6 +1,5 @@
 import 'package:ai_shopper_online/screens/products/products_screen.dart';
 import 'package:flutter/widgets.dart';
-
 import 'screens/cart/cart_screen.dart';
 import 'screens/complete_profile/complete_profile_screen.dart';
 import 'screens/details/details_screen.dart';
@@ -22,7 +21,7 @@ final Map<String, WidgetBuilder> routes = {
   SignInScreen.routeName: (context) => const SignInScreen(),
   ForgotPasswordScreen.routeName: (context) => const ForgotPasswordScreen(),
   LoginSuccessScreen.routeName: (context) => const LoginSuccessScreen(),
-  SignUpScreen.routeName: (context) => const SignUpScreen(),
+  SignUpScreen.routeName: (context) => SignUpScreen(),
   CompleteProfileScreen.routeName: (context) => const CompleteProfileScreen(),
   OtpScreen.routeName: (context) => const OtpScreen(),
   HomeScreen.routeName: (context) => const HomeScreen(),

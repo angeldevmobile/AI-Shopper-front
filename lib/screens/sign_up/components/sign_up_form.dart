@@ -61,8 +61,8 @@ class _SignUpFormState extends State<SignUpForm> {
               return null;
             },
             decoration: const InputDecoration(
-              labelText: "Email",
-              hintText: "Enter your email",
+              labelText: "Correo Electrónico",
+              hintText: "Ingresa tu correo electrónico",
               floatingLabelBehavior: FloatingLabelBehavior.always,
               suffixIcon: CustomSurffixIcon(svgIcon: "assets/icons/Mail.svg"),
             ),
@@ -89,8 +89,8 @@ class _SignUpFormState extends State<SignUpForm> {
               return null;
             },
             decoration: const InputDecoration(
-              labelText: "Password",
-              hintText: "Enter your password",
+              labelText: "Contraseña",
+              hintText: "Ingresa tu contraseña",
               floatingLabelBehavior: FloatingLabelBehavior.always,
               suffixIcon: CustomSurffixIcon(svgIcon: "assets/icons/Lock.svg"),
             ),
@@ -117,8 +117,8 @@ class _SignUpFormState extends State<SignUpForm> {
               return null;
             },
             decoration: const InputDecoration(
-              labelText: "Confirm Password",
-              hintText: "Re-enter your password",
+              labelText: "Confirmar Contraseña",
+              hintText: "Re-ingresa tu contraseña",
               floatingLabelBehavior: FloatingLabelBehavior.always,
               suffixIcon: CustomSurffixIcon(svgIcon: "assets/icons/Lock.svg"),
             ),
@@ -136,7 +136,7 @@ class _SignUpFormState extends State<SignUpForm> {
                 );
               }
             },
-            child: const Text("Continue"),
+            child: const Text("Continuar"),
           ),
         ],
       ),

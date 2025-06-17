@@ -1,18 +1,15 @@
 import 'package:flutter/material.dart';
-
-import '../../constants.dart';
 import 'components/complete_profile_form.dart';
+import '../../constants.dart'; // Importa las constantes
 
 class CompleteProfileScreen extends StatelessWidget {
   static String routeName = "/complete_profile";
+  const CompleteProfileScreen({Key? key}) : super(key: key);
 
-  const CompleteProfileScreen({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Sign Up'),
-      ),
+      appBar: AppBar(title: const Text('Sign Up')),
       body: SafeArea(
         child: SizedBox(
           width: double.infinity,
@@ -21,17 +18,17 @@ class CompleteProfileScreen extends StatelessWidget {
             child: SingleChildScrollView(
               child: Column(
                 children: [
-                  const SizedBox(height: 16),
-                  const Text("Complete Profile", style: headingStyle),
+                  SizedBox(height: MediaQuery.of(context).size.height * 0.02),
+                  const Text("Completar Perfil", style: headingStyle),
                   const Text(
-                    "Complete your details or continue  \nwith social media",
+                    "Completa tus detalles o continua\ncon social media",
                     textAlign: TextAlign.center,
                   ),
-                  const SizedBox(height: 16),
+                  SizedBox(height: MediaQuery.of(context).size.height * 0.05),
                   const CompleteProfileForm(),
-                  const SizedBox(height: 30),
+                  SizedBox(height: MediaQuery.of(context).size.height * 0.03),
                   Text(
-                    "By continuing your confirm that you agree \nwith our Term and Condition",
+                    "Al continuar, confirmas que estás de acuerdo\ncon nuestros Términos y Condiciones",
                     textAlign: TextAlign.center,
                     style: Theme.of(context).textTheme.bodySmall,
                   ),
