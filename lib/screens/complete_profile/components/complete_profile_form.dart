@@ -163,7 +163,14 @@ class _CompleteProfileFormState extends State<CompleteProfileForm> {
 
                     if (exito) {
                       print('Registro exitoso');
-                      Navigator.pushNamed(context, OtpScreen.routeName);
+                      Navigator.pushNamed(
+                        context,
+                        OtpScreen.routeName,
+                        arguments: {
+                          'correo': correo,
+                          'contrasena': contrasena,
+                        }, // Pasa el correo electrónico a OtpScreen
+                      );
                     } else {
                       print('Error al registrar usuario');
                       ScaffoldMessenger.of(context).showSnackBar(

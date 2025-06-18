@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "1086808983934-7nue48i1899dughsmdsb6mf3pt33mup8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.ai_shopper_online",
+            "certificate_hash": "f9cae3c86a3245dace0b0330e2c540bacc43127d"
+          }
+        },
+        {
           "client_id": "1086808983934-44hd9lei1u6clve1ifj1ej1n6bdijgvr.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -29,6 +37,13 @@
             {
               "client_id": "1086808983934-44hd9lei1u6clve1ifj1ej1n6bdijgvr.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "1086808983934-1keav9skhvvpije2tphj3r8clh0hhdue.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.aiShopperOnline"
+              }
             }
           ]
         }

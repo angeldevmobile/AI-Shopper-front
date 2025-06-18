@@ -36,28 +36,36 @@ class AuthService {
   }
 
   // Iniciar sesión con Google
-  Future<UserCredential?> signInWithGoogle() async {
+  Future<Map<String, dynamic>?> signInWithGoogle() async {
     try {
       final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
-      if (googleUser == null) {
-        return null;
-      }
+      if (googleUser == null) return null;
 
       final GoogleSignInAuthentication googleAuth =
           await googleUser.authentication;
-
       final OAuthCredential credential = GoogleAuthProvider.credential(
         accessToken: googleAuth.accessToken,
         idToken: googleAuth.idToken,
       );
 
-      final userCredential = await _auth.signInWithCredential(credential);
-      return userCredential;
+      final UserCredential userCredential = await _auth.signInWithCredential(
+        credential,
+      );
+      final User? user = userCredential.user;
+
+      if (user != null) {
+        return {
+          'email': user.email,
+          'name': user.displayName ?? user.email!.split('@')[0],
+          'uid': user.uid,
+        };
+      }
+      return null;
     } on FirebaseAuthException catch (e) {
-      print("Error al iniciar sesión con Google: ${e.code}");
+      print("Error al registrar con Google: ${e.code}");
       return null;
     } catch (e) {
-      print("Error al iniciar sesión con Google: $e");
+      print("Error general al registrar con Google: $e");
       return null;
     }
   }

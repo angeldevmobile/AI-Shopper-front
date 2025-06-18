@@ -1,3 +1,5 @@
+import 'package:ai_shopper_online/screens/otp/otp_screen.dart';
+import 'package:ai_shopper_online/services/api_service.dart';
 import 'package:flutter/material.dart';
 import 'package:ai_shopper_online/services/auth_service.dart';
 import '../../components/socal_card.dart';
@@ -29,7 +31,7 @@ class SignUpScreen extends StatelessWidget {
                     textAlign: TextAlign.center,
                   ),
                   const SizedBox(height: 16),
-                  const SignUpForm(),
+                  const SignUpForm(), // Este formulario es para el registro completo
                   const SizedBox(height: 16),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -37,30 +39,41 @@ class SignUpScreen extends StatelessWidget {
                       SocalCard(
                         icon: "assets/icons/google-icon.svg",
                         press: () async {
-                          // Modifica la función press para que sea asíncrona
                           final authService = AuthService(context: context);
-                          final userCredential =
+                          final googleData =
                               await authService.signInWithGoogle();
-                          if (userCredential != null) {
-                            // Registro exitoso
-                            print(
-                              'Usuario de Google: ${userCredential.user?.displayName}',
-                            );
-                            // Navega a la siguiente pantalla para completar el perfil
-                            Navigator.pushNamed(
-                              context,
-                              CompleteProfileScreen
-                                  .routeName, // Navega a CompleteProfileScreen
-                            );
-                          } else {
-                            // Error al registrar sesión
-                            print('Error al registrar sesión con Google');
-                            // Muestra un mensaje de error al usuario
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
-                                content: Text(
-                                  'Error al registrar sesión con Google',
+                          if (googleData != null) {
+                            print('Usuario de Google: ${googleData['email']}');
+                            final success =
+                                await ApiService.registrarUsuarioCompleto(
+                                  correo: googleData['email']!,
+                                  contrasena:
+                                      'google_auth', // Marca temporal para Google
+                                  nombres: googleData['name']!,
+                                  apellidos: '',
+                                  direccion: '',
+                                  telefono: '',
+                                  rolId: 1,
+                                );
+                            if (success) {
+                              Navigator.pushNamed(
+                                context,
+                                OtpScreen.routeName,
+                                arguments: {'correo': googleData['email']},
+                              );
+                            } else {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                  content: Text(
+                                    'Error al registrar con Google',
+                                  ),
                                 ),
+                              );
+                            }
+                          } else {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                content: Text('Error al registrar con Google'),
                               ),
                             );
                           }
