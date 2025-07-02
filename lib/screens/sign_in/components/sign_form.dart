@@ -4,6 +4,7 @@ import '../../../components/custom_surfix_icon.dart';
 import '../../../components/form_error.dart';
 import '../../../constants.dart';
 import '../../../helper/keyboard.dart';
+import '../../../services/auth_service.dart';
 import '../../forgot_password/forgot_password_screen.dart';
 import '../../login_success/login_success_screen.dart';
 
@@ -20,6 +21,7 @@ class _SignFormState extends State<SignForm> {
   String? password;
   bool? remember = false;
   final List<String?> errors = [];
+  String loginError = "";
 
   void addError({String? error}) {
     if (!errors.contains(error)) {
@@ -80,17 +82,12 @@ class _SignFormState extends State<SignForm> {
             onChanged: (value) {
               if (value.isNotEmpty) {
                 removeError(error: kPassNullError);
-              } else if (value.length >= 8) {
-                removeError(error: kShortPassError);
               }
               return;
             },
             validator: (value) {
-              if (value!.isEmpty) {
+              if (value == null || value.isEmpty) {
                 addError(error: kPassNullError);
-                return "";
-              } else if (value.length < 8) {
-                addError(error: kShortPassError);
                 return "";
               }
               return null;
@@ -98,8 +95,6 @@ class _SignFormState extends State<SignForm> {
             decoration: const InputDecoration(
               labelText: "Password",
               hintText: "Enter your password",
-              // If  you are using latest version of flutter then lable text and hint text shown like this
-              // if you r using flutter less then 1.20.* then maybe this is not working properly
               floatingLabelBehavior: FloatingLabelBehavior.always,
               suffixIcon: CustomSurffixIcon(svgIcon: "assets/icons/Lock.svg"),
             ),
@@ -129,14 +124,33 @@ class _SignFormState extends State<SignForm> {
             ],
           ),
           FormError(errors: errors),
+          if (loginError.isNotEmpty)
+            Padding(
+              padding: const EdgeInsets.only(bottom: 8.0),
+              child: Text(
+                loginError,
+                style: const TextStyle(color: Colors.red),
+              ),
+            ),
           const SizedBox(height: 16),
           ElevatedButton(
-            onPressed: () {
+            onPressed: () async {
               if (_formKey.currentState!.validate()) {
                 _formKey.currentState!.save();
-                // if all are valid then go to success screen
                 KeyboardUtil.hideKeyboard(context);
-                Navigator.pushNamed(context, LoginSuccessScreen.routeName);
+                print("Email: $email, Password: $password"); // <-- Agrega este print
+                bool success = await AuthService.login(email!, password!);
+                print("Resultado login: $success"); // <-- Y este print
+                if (success) {
+                  setState(() {
+                    loginError = "";
+                  });
+                  Navigator.pushNamed(context, LoginSuccessScreen.routeName);
+                } else {
+                  setState(() {
+                    loginError = "Incorrect password for your email";
+                  });
+                }
               }
             },
             child: const Text("Continue"),

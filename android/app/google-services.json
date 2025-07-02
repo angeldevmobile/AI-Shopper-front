@@ -30,6 +30,14 @@
           }
         },
         {
+          "client_id": "1086808983934-i3irhck9ub1d93c01lsetn8slt79ddt8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.ai_shopper_online",
+            "certificate_hash": "8442ea2e77f5b418e106fe1c5fbe0c62fa1f3c94"
+          }
+        },
+        {
           "client_id": "1086808983934-44hd9lei1u6clve1ifj1ej1n6bdijgvr.apps.googleusercontent.com",
           "client_type": 3
         }

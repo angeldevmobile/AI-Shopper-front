@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import 'components/forgot_pass_form.dart';
+import '../../services/auth_service.dart';
 
 class ForgotPasswordScreen extends StatelessWidget {
   static String routeName = "/forgot_password";
@@ -38,6 +37,65 @@ class ForgotPasswordScreen extends StatelessWidget {
             ),
           ),
         ),
+      ),
+    );
+  }
+}
+
+class ForgotPassForm extends StatefulWidget {
+  const ForgotPassForm({Key? key}) : super(key: key);
+
+  @override
+  _ForgotPassFormState createState() => _ForgotPassFormState();
+}
+
+class _ForgotPassFormState extends State<ForgotPassForm> {
+  final _formKey = GlobalKey<FormState>();
+  String? email;
+  String? message;
+
+  @override
+  Widget build(BuildContext context) {
+    return Form(
+      key: _formKey,
+      child: Column(
+        children: [
+          TextFormField(
+            decoration: const InputDecoration(labelText: "Email"),
+            keyboardType: TextInputType.emailAddress,
+            onSaved: (value) {
+              email = value;
+            },
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                return "Please enter your email";
+              }
+              return null;
+            },
+          ),
+          const SizedBox(height: 16),
+          if (message != null)
+            Text(
+              message!,
+              style: TextStyle(color: Colors.red),
+            ),
+          ElevatedButton(
+            onPressed: () async {
+              if (_formKey.currentState!.validate()) {
+                _formKey.currentState!.save();
+                bool enviado = await AuthService.solicitarRecuperacion(email!);
+                setState(() {
+                  message = enviado
+                      ? "Check your email for the OTP code."
+                      : "Failed to send recovery email.";
+                });
+                // Aquí puedes navegar a la pantalla de OTP si fue exitoso
+                // Navigator.push(context, MaterialPageRoute(builder: (_) => ConfirmPasswordScreen(email: email!)));
+              }
+            },
+            child: const Text("Continue"),
+          ),
+        ],
       ),
     );
   }
