@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../services/auth_service.dart';
+import './confirm_password_screen.dart';
 
 class ForgotPasswordScreen extends StatelessWidget {
   static String routeName = "/forgot_password";
@@ -8,9 +9,7 @@ class ForgotPasswordScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Forgot Password"),
-      ),
+      appBar: AppBar(title: const Text("Forgot Password")),
       body: const SizedBox(
         width: double.infinity,
         child: SingleChildScrollView(
@@ -75,22 +74,26 @@ class _ForgotPassFormState extends State<ForgotPassForm> {
           ),
           const SizedBox(height: 16),
           if (message != null)
-            Text(
-              message!,
-              style: TextStyle(color: Colors.red),
-            ),
+            Text(message!, style: TextStyle(color: Colors.red)),
           ElevatedButton(
             onPressed: () async {
               if (_formKey.currentState!.validate()) {
                 _formKey.currentState!.save();
                 bool enviado = await AuthService.solicitarRecuperacion(email!);
-                setState(() {
-                  message = enviado
-                      ? "Check your email for the OTP code."
-                      : "Failed to send recovery email.";
-                });
-                // Aquí puedes navegar a la pantalla de OTP si fue exitoso
-                // Navigator.push(context, MaterialPageRoute(builder: (_) => ConfirmPasswordScreen(email: email!)));
+                if (enviado) {
+                  // Navegar a ConfirmPasswordScreen con el email
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder:
+                          (context) => ConfirmPasswordScreen(email: email!),
+                    ),
+                  );
+                } else {
+                  setState(() {
+                    message = "Failed to send recovery email.";
+                  });
+                }
               }
             },
             child: const Text("Continue"),

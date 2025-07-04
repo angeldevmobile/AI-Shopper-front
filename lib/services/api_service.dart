@@ -13,7 +13,7 @@ class ApiService {
   }) async {
     try {
       final url = Uri.parse(
-        'http://192.168.0.109:3000/usuarios/completar-perfil',
+        'http://192.168.0.100:3000/usuarios/completar-perfil',
       );
       final response = await http.post(
         url,
@@ -47,7 +47,7 @@ class ApiService {
     required String correo,
     required String otp,
   }) async {
-    final url = Uri.parse('http://192.168.0.109:3000/usuarios/verify-otp');
+    final url = Uri.parse('http://192.168.0.100:3000/usuarios/verify-otp');
     final response = await http.post(
       url,
       headers: {'Content-Type': 'application/json'},

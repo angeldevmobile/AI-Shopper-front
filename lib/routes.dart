@@ -4,6 +4,7 @@ import 'screens/cart/cart_screen.dart';
 import 'screens/complete_profile/complete_profile_screen.dart';
 import 'screens/details/details_screen.dart';
 import 'screens/forgot_password/forgot_password_screen.dart';
+//import 'screens/forgot_password/confirm_password_screen.dart';
 import 'screens/home/home_screen.dart';
 import 'screens/init_screen.dart';
 import 'screens/login_success/login_success_screen.dart';
@@ -20,6 +21,7 @@ final Map<String, WidgetBuilder> routes = {
   SplashScreen.routeName: (context) => const SplashScreen(),
   SignInScreen.routeName: (context) => const SignInScreen(),
   ForgotPasswordScreen.routeName: (context) => const ForgotPasswordScreen(),
+  //ConfirmPasswordScreen.routeName: (context) => const ConfirmPasswordScreen(),
   LoginSuccessScreen.routeName: (context) => const LoginSuccessScreen(),
   SignUpScreen.routeName: (context) => SignUpScreen(),
   CompleteProfileScreen.routeName: (context) => const CompleteProfileScreen(),

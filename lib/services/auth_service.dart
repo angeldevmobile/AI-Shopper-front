@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:flutter/material.dart'; // Importa material.dart para el diálogo
+import 'package:flutter/material.dart'; // Para el contexto y diálogos si es necesario
 
 class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -23,7 +23,6 @@ class AuthService {
       );
       print("createUserWithEmailAndPassword completado");
       print("Credencial: $credential");
-
       return credential;
     } on FirebaseAuthException catch (e) {
       print('FirebaseAuthException al registrar usuario: ${e.code}');
@@ -40,7 +39,8 @@ class AuthService {
   // Iniciar sesión con Google
   Future<Map<String, dynamic>?> signInWithGoogle() async {
     try {
-      final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+      final GoogleSignIn _googleSignIn = GoogleSignIn();
+      final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
       if (googleUser == null) return null;
 
       final GoogleSignInAuthentication googleAuth =
@@ -72,9 +72,25 @@ class AuthService {
     }
   }
 
+  // Obtener ID Token para enviar al backend
+  Future<String?> getIdToken() async {
+    try {
+      final User? user = _auth.currentUser;
+      if (user != null) {
+        return await user.getIdToken();
+      }
+      print("No hay usuario autenticado para obtener el ID Token");
+      return null;
+    } catch (e) {
+      print("Error al obtener ID Token: $e");
+      return null;
+    }
+  }
+
+  // Iniciar sesión con correo y contraseña
   static Future<bool> login(String email, String password) async {
     try {
-      final url = Uri.parse('http://192.168.0.109:3000/usuarios/login'); // <-- Cambia aquí a "usuarios"
+      final url = Uri.parse('http://192.168.0.100:3000/usuarios/login');
       final response = await http.post(
         url,
         headers: {'Content-Type': 'application/json'},
@@ -97,8 +113,9 @@ class AuthService {
     }
   }
 
+  // Solicitar recuperación de contraseña
   static Future<bool> solicitarRecuperacion(String correo) async {
-    final url = Uri.parse('http://192.168.0.109:3000/usuarios/forgot-password');
+    final url = Uri.parse('http://192.168.0.100:3000/usuarios/forgot-password');
     final response = await http.post(
       url,
       headers: {'Content-Type': 'application/json'},
@@ -107,30 +124,5 @@ class AuthService {
     print('Status code: ${response.statusCode}');
     print('Body: ${response.body}');
     return response.statusCode == 200;
-  }
-
-  static Future<bool> resetearContrasena(String correo, String otp, String nuevaContrasena) async {
-    try {
-      final url = Uri.parse('http://192.168.0.109:3000/usuarios/resetear-contrasena'); // <-- Cambia aquí a "resetear-contrasena"
-      final response = await http.post(
-        url,
-        headers: {'Content-Type': 'application/json'},
-        body: jsonEncode({'correo': correo, 'otp': otp, 'nuevaContrasena': nuevaContrasena}),
-      );
-      print('Status code: ${response.statusCode}');
-      print('Body: ${response.body}');
-      if (response.statusCode == 200) {
-        final data = jsonDecode(response.body);
-        if (data['success'] == true) {
-          return true;
-        }
-        print('Mensaje backend: ${data['message']}');
-        return false;
-      }
-      return false;
-    } catch (e) {
-      print('Error al resetear contraseña: $e');
-      return false;
-    }
   }
 }
