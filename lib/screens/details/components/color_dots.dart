@@ -11,19 +11,20 @@ class ColorDots extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Now this is fixed and only for demo
-    int selectedColor = 3;
+    // Si tu modelo Product no tiene colores, muestra solo los botones de cantidad
+    // Puedes agregar un campo colors a Product si lo necesitas en el futuro
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Row(
         children: [
-          ...List.generate(
-            product.colors.length,
-            (index) => ColorDot(
-              color: product.colors[index],
-              isSelected: index == selectedColor,
-            ),
-          ),
+          // Si tienes colores, descomenta y usa esto:
+          // ...List.generate(
+          //   product.colors.length,
+          //   (index) => ColorDot(
+          //     color: product.colors[index],
+          //     isSelected: index == selectedColor,
+          //   ),
+          // ),
           const Spacer(),
           RoundedIconBtn(icon: Icons.remove, press: () {}),
           const SizedBox(width: 20),

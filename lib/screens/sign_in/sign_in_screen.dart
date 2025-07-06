@@ -14,7 +14,7 @@ class SignInScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Sign In")),
+      appBar: AppBar(title: const Text("Iniciar Sesión")),
       body: SafeArea(
         child: SizedBox(
           width: double.infinity,
@@ -25,7 +25,7 @@ class SignInScreen extends StatelessWidget {
                 children: [
                   const SizedBox(height: 16),
                   const Text(
-                    "Welcome Back",
+                    "Bienvenido de nuevo",
                     style: TextStyle(
                       color: Colors.black,
                       fontSize: 24,
@@ -33,7 +33,7 @@ class SignInScreen extends StatelessWidget {
                     ),
                   ),
                   const Text(
-                    "Sign in with your email and password  \nor continue with social media",
+                    "Inicia sesión con tu correo y contraseña\no continúa con redes sociales",
                     textAlign: TextAlign.center,
                   ),
                   const SizedBox(height: 30),
@@ -53,7 +53,7 @@ class SignInScreen extends StatelessWidget {
                             // Enviar ID token al backend para verificar
                             final idToken = await authService.getIdToken();
                             final url = Uri.parse(
-                              'http://192.168.0.100:3000/usuarios/google-login',
+                              'http://192.168.56.1:3000/usuarios/google-login',
                             );
                             final response = await http.post(
                               url,

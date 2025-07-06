@@ -6,7 +6,7 @@ import 'package:ai_shopper_online/screens/sign_in/sign_in_screen.dart'; // Impor
 class OtpForm extends StatefulWidget {
   final String correo; // Solo correo como parámetro
 
-  const OtpForm({Key? key, required this.correo}) : super(key: key);
+  const OtpForm({super.key, required this.correo});
 
   @override
   _OtpFormState createState() => _OtpFormState();
@@ -155,7 +155,7 @@ class _OtpFormState extends State<OtpForm> {
                 );
               }
             },
-            child: const Text("Continue"),
+            child: const Text("Continuar"),
           ),
         ],
       ),

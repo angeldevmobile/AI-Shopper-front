@@ -4,17 +4,12 @@ import 'package:flutter_svg/flutter_svg.dart';
 import '../../../constants.dart';
 
 class CheckoutCard extends StatelessWidget {
-  const CheckoutCard({
-    super.key,
-  });
+  const CheckoutCard({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(
-        vertical: 16,
-        horizontal: 20,
-      ),
+      padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 20),
       // height: 174,
       decoration: BoxDecoration(
         color: Colors.white,
@@ -27,7 +22,7 @@ class CheckoutCard extends StatelessWidget {
             offset: const Offset(0, -15),
             blurRadius: 20,
             color: const Color(0xFFDADADA).withOpacity(0.15),
-          )
+          ),
         ],
       ),
       child: SafeArea(
@@ -48,13 +43,13 @@ class CheckoutCard extends StatelessWidget {
                   child: SvgPicture.asset("assets/icons/receipt.svg"),
                 ),
                 const Spacer(),
-                const Text("Add voucher code"),
+                const Text("Agregar más artículos"),
                 const SizedBox(width: 8),
                 const Icon(
                   Icons.arrow_forward_ios,
                   size: 12,
                   color: kTextColor,
-                )
+                ),
               ],
             ),
             const SizedBox(height: 16),
@@ -76,7 +71,7 @@ class CheckoutCard extends StatelessWidget {
                 Expanded(
                   child: ElevatedButton(
                     onPressed: () {},
-                    child: const Text("Check Out"),
+                    child: const Text("Realizar Pedido"),
                   ),
                 ),
               ],

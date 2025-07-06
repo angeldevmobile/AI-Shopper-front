@@ -14,7 +14,7 @@ class OtpScreen extends StatelessWidget {
     final correo = args?['correo'] ?? '';
 
     return Scaffold(
-      appBar: AppBar(title: const Text("OTP Verification")),
+      appBar: AppBar(title: const Text("Verificación de OTP")),
       body: SizedBox(
         width: double.infinity,
         child: Padding(
@@ -23,12 +23,15 @@ class OtpScreen extends StatelessWidget {
             child: Column(
               children: [
                 const SizedBox(height: 16),
-                const Text("OTP Verification", style: headingStyle),
-                Text("We sent your code to $correo"), // Mostrar el correo real
+                const Text("Verificación de OTP", style: headingStyle),
+                Text("Envio de codigo OTP a $correo"), // Mostrar el correo real
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Text("This code will expired in "),
+                    const Text(
+                      "El código expirará en: ",
+                      style: TextStyle(color: kPrimaryColor),
+                    ),
                     TweenAnimationBuilder(
                       tween: Tween(
                         begin: 300.0,
@@ -57,7 +60,7 @@ class OtpScreen extends StatelessWidget {
                     );
                   },
                   child: const Text(
-                    "Resend OTP Code",
+                    "Reenviar OTP",
                     style: TextStyle(decoration: TextDecoration.underline),
                   ),
                 ),

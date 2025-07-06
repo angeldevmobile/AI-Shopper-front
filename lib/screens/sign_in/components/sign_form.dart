@@ -67,8 +67,8 @@ class _SignFormState extends State<SignForm> {
               return null;
             },
             decoration: const InputDecoration(
-              labelText: "Email",
-              hintText: "Enter your email",
+              labelText: "Correo",
+              hintText: "Ingresa tu correo",
               // If  you are using latest version of flutter then lable text and hint text shown like this
               // if you r using flutter less then 1.20.* then maybe this is not working properly
               floatingLabelBehavior: FloatingLabelBehavior.always,
@@ -93,8 +93,8 @@ class _SignFormState extends State<SignForm> {
               return null;
             },
             decoration: const InputDecoration(
-              labelText: "Password",
-              hintText: "Enter your password",
+              labelText: "Contraseña",
+              hintText: "Ingresa tu contraseña",
               floatingLabelBehavior: FloatingLabelBehavior.always,
               suffixIcon: CustomSurffixIcon(svgIcon: "assets/icons/Lock.svg"),
             ),
@@ -111,13 +111,13 @@ class _SignFormState extends State<SignForm> {
                   });
                 },
               ),
-              const Text("Remember me"),
+              const Text("Recuerdame"),
               const Spacer(),
               GestureDetector(
                 onTap: () => Navigator.pushNamed(
                     context, ForgotPasswordScreen.routeName),
                 child: const Text(
-                  "Forgot Password",
+                  "¿Olvidaste tu contraseña?",
                   style: TextStyle(decoration: TextDecoration.underline),
                 ),
               )
@@ -138,7 +138,7 @@ class _SignFormState extends State<SignForm> {
               if (_formKey.currentState!.validate()) {
                 _formKey.currentState!.save();
                 KeyboardUtil.hideKeyboard(context);
-                print("Email: $email, Password: $password"); // <-- Agrega este print
+                print("Email: $email, Password: $password"); 
                 bool success = await AuthService.login(email!, password!);
                 print("Resultado login: $success"); // <-- Y este print
                 if (success) {
@@ -148,12 +148,12 @@ class _SignFormState extends State<SignForm> {
                   Navigator.pushNamed(context, LoginSuccessScreen.routeName);
                 } else {
                   setState(() {
-                    loginError = "Incorrect password for your email";
+                    loginError = "Error al iniciar sesión";
                   });
                 }
               }
             },
-            child: const Text("Continue"),
+            child: const Text("Continuar"),
           ),
         ],
       ),

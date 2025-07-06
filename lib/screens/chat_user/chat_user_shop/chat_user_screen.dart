@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import '../../../constants.dart';
 
 class ChatUserScreen extends StatelessWidget {
+  static String routeName = "/chat_user"; 
+
   const ChatUserScreen({super.key});
 
   @override
@@ -11,7 +13,7 @@ class ChatUserScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: kPrimaryColor,
         title: Text(
-          'Shop Chat',
+          'Chat AIShopper',
           style: TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.bold,
@@ -95,8 +97,8 @@ class ChatUserScreen extends StatelessWidget {
                           ),
                           child: Text(
                             isUserMessage
-                                ? 'User message $index'
-                                : 'AI response $index',
+                                ? 'Mensaje del usuario $index'
+                                : 'Mensaje de la IA $index',
                           ),
                         ),
                       ),
@@ -125,7 +127,7 @@ class ChatUserScreen extends StatelessWidget {
                 Expanded(
                   child: TextField(
                     decoration: InputDecoration(
-                      hintText: 'Type your message...',
+                      hintText: 'Escribe tu mensaje...',
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),

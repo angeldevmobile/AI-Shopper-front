@@ -17,17 +17,17 @@ class _SplashScreenState extends State<SplashScreen> {
   int currentPage = 0;
   List<Map<String, String>> splashData = [
     {
-      "text": "Welcome to AI Shop, your smart shopping companion!",
-      "image": "assets/images/splash_1.png"
+      "text": "¡Bienvenido a AI Shop, tu compañero inteligente de compras!",
+      "image": "assets/images/splash_1.png",
+    },
+    {
+      "text": "Te conectamos con las mejores tiendas \nfácil y rápidamente",
+      "image": "assets/images/splash_2.png",
     },
     {
       "text":
-          "We connect you with the best stores \neasily and effortlessly",
-      "image": "assets/images/splash_2.png"
-    },
-    {
-      "text": "Shopping made simple. \nRelax at home while we do the rest",
-      "image": "assets/images/splash_3.png"
+          "Hacemos tus compras simples. \nRelájate en casa mientras nosotros hacemos el resto",
+      "image": "assets/images/splash_3.png",
     },
   ];
   @override
@@ -47,10 +47,11 @@ class _SplashScreenState extends State<SplashScreen> {
                     });
                   },
                   itemCount: splashData.length,
-                  itemBuilder: (context, index) => SplashContent(
-                    image: splashData[index]["image"],
-                    text: splashData[index]['text'],
-                  ),
+                  itemBuilder:
+                      (context, index) => SplashContent(
+                        image: splashData[index]["image"],
+                        text: splashData[index]['text'],
+                      ),
                 ),
               ),
               Expanded(
@@ -70,9 +71,10 @@ class _SplashScreenState extends State<SplashScreen> {
                             height: 6,
                             width: currentPage == index ? 20 : 6,
                             decoration: BoxDecoration(
-                              color: currentPage == index
-                                  ? kPrimaryColor
-                                  : const Color(0xFFD8D8D8),
+                              color:
+                                  currentPage == index
+                                      ? kPrimaryColor
+                                      : const Color(0xFFD8D8D8),
                               borderRadius: BorderRadius.circular(3),
                             ),
                           ),
@@ -83,7 +85,7 @@ class _SplashScreenState extends State<SplashScreen> {
                         onPressed: () {
                           Navigator.pushNamed(context, SignInScreen.routeName);
                         },
-                        child: const Text("Continue"),
+                        child: const Text("Continuar"),
                       ),
                       const Spacer(),
                     ],

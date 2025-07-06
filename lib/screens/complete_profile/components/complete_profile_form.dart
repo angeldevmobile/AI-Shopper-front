@@ -8,7 +8,7 @@ import '../../../constants.dart';
 import '../../otp/otp_screen.dart';
 
 class CompleteProfileForm extends StatefulWidget {
-  const CompleteProfileForm({Key? key}) : super(key: key);
+  const CompleteProfileForm({super.key});
 
   @override
   _CompleteProfileFormState createState() => _CompleteProfileFormState();

@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import '../../services/auth_service.dart';
-import '../../screens/login_success/login_success_screen.dart'; // Asegúrate de importar
+import '../../screens/login_success/login_success_screen.dart';
 
 class ConfirmPasswordScreen extends StatefulWidget {
   final String email;
-  const ConfirmPasswordScreen({Key? key, required this.email})
-    : super(key: key);
+  const ConfirmPasswordScreen({super.key, required this.email});
 
   @override
   State<ConfirmPasswordScreen> createState() => _ConfirmPasswordScreenState();
@@ -20,7 +19,7 @@ class _ConfirmPasswordScreenState extends State<ConfirmPasswordScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Forgot Password"),
+        title: const Text("Recuperar Contraseña"),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () => Navigator.pop(context),
@@ -35,7 +34,7 @@ class _ConfirmPasswordScreenState extends State<ConfirmPasswordScreen> {
             children: [
               const SizedBox(height: 16),
               const Text(
-                "Confirm Password",
+                "Confirmar Contraseña",
                 style: TextStyle(
                   fontSize: 24,
                   color: Colors.black,
@@ -44,7 +43,7 @@ class _ConfirmPasswordScreenState extends State<ConfirmPasswordScreen> {
               ),
               const SizedBox(height: 8),
               const Text(
-                "Please enter your new password",
+                "Por favor, ingresa tu nueva contraseña",
                 textAlign: TextAlign.center,
                 style: TextStyle(fontSize: 16, color: Colors.grey),
               ),
@@ -55,8 +54,8 @@ class _ConfirmPasswordScreenState extends State<ConfirmPasswordScreen> {
                   children: [
                     TextFormField(
                       decoration: const InputDecoration(
-                        labelText: "Password",
-                        hintText: "Enter your password",
+                        labelText: "Nueva Contraseña",
+                        hintText: "Ingresa tu contraseña",
                         suffixIcon: Icon(Icons.lock),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(30)),
@@ -67,7 +66,7 @@ class _ConfirmPasswordScreenState extends State<ConfirmPasswordScreen> {
                       validator:
                           (value) =>
                               value == null || value.isEmpty
-                                  ? "Enter new password"
+                                  ? "Por favor, ingresa tu nueva contraseña"
                                   : null,
                     ),
                     const SizedBox(height: 16),
@@ -101,7 +100,7 @@ class _ConfirmPasswordScreenState extends State<ConfirmPasswordScreen> {
                           } else {
                             setState(() {
                               errorMessage =
-                                  "Incorrect password. Check your email for the temporary password.";
+                                  "Contraseña incorrecta, por favor intenta de nuevo.";
                             });
                           }
                         }
@@ -114,7 +113,7 @@ class _ConfirmPasswordScreenState extends State<ConfirmPasswordScreen> {
                         ),
                       ),
                       child: const Text(
-                        "Continue",
+                        "Continuar",
                         style: TextStyle(fontSize: 16, color: Colors.white),
                       ),
                     ),
@@ -128,7 +127,7 @@ class _ConfirmPasswordScreenState extends State<ConfirmPasswordScreen> {
                   // Navigator.pushNamed(context, '/signup');
                 },
                 child: const Text(
-                  "Don't have an account? Sign Up",
+                  "¿No tienes una cuenta? Regístrate aquí",
                   style: TextStyle(color: Colors.orange),
                 ),
               ),

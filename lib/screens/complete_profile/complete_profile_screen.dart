@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'components/complete_profile_form.dart';
-import '../../constants.dart'; // Importa las constantes
+import '../../constants.dart';
 
 class CompleteProfileScreen extends StatelessWidget {
   static String routeName = "/complete_profile";
-  const CompleteProfileScreen({Key? key}) : super(key: key);
+  const CompleteProfileScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Sign Up')),
+      appBar: AppBar(title: const Text('Realizar Perfil')),
       body: SafeArea(
         child: SizedBox(
           width: double.infinity,

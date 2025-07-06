@@ -1,18 +1,18 @@
 import 'package:ai_shopper_online/screens/splash/splash_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:firebase_core/firebase_core.dart'; // Importa firebase_core
-import 'firebase_options.dart'; // Importa firebase_options.dart// Asegura la importación correcta de DefaultFirebaseOptions
+import 'package:firebase_core/firebase_core.dart'; 
+import 'firebase_options.dart'; 
 import 'routes.dart';
 import 'theme.dart';
 
 void main() async {
   // Agrega async
-  WidgetsFlutterBinding.ensureInitialized(); // Asegura que Flutter esté inicializado
+  WidgetsFlutterBinding.ensureInitialized(); 
   await Firebase.initializeApp(
     // Inicializa Firebase
     options:
         DefaultFirebaseOptions
-            .currentPlatform, // Usa las opciones específicas de la plataforma
+            .currentPlatform,
   );
   runApp(const MyApp());
 }

@@ -9,7 +9,7 @@ class ForgotPasswordScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Forgot Password")),
+      appBar: AppBar(title: const Text("Olvidé mi contraseña")),
       body: const SizedBox(
         width: double.infinity,
         child: SingleChildScrollView(
@@ -19,7 +19,7 @@ class ForgotPasswordScreen extends StatelessWidget {
               children: [
                 SizedBox(height: 16),
                 Text(
-                  "Forgot Password",
+                  "Olvidé mi contraseña",
                   style: TextStyle(
                     fontSize: 24,
                     color: Colors.black,
@@ -27,7 +27,7 @@ class ForgotPasswordScreen extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  "Please enter your email and we will send \nyou a link to return to your account",
+                  "Por favor, ingresa tu correo electrónico y te enviaremos\nun enlace para recuperar tu cuenta",
                   textAlign: TextAlign.center,
                 ),
                 SizedBox(height: 32),
@@ -42,7 +42,7 @@ class ForgotPasswordScreen extends StatelessWidget {
 }
 
 class ForgotPassForm extends StatefulWidget {
-  const ForgotPassForm({Key? key}) : super(key: key);
+  const ForgotPassForm({super.key});
 
   @override
   _ForgotPassFormState createState() => _ForgotPassFormState();
@@ -60,14 +60,14 @@ class _ForgotPassFormState extends State<ForgotPassForm> {
       child: Column(
         children: [
           TextFormField(
-            decoration: const InputDecoration(labelText: "Email"),
+            decoration: const InputDecoration(labelText: "Correo"),
             keyboardType: TextInputType.emailAddress,
             onSaved: (value) {
               email = value;
             },
             validator: (value) {
               if (value == null || value.isEmpty) {
-                return "Please enter your email";
+                return "Por favor, ingresa tu correo electrónico";
               }
               return null;
             },
@@ -91,12 +91,12 @@ class _ForgotPassFormState extends State<ForgotPassForm> {
                   );
                 } else {
                   setState(() {
-                    message = "Failed to send recovery email.";
+                    message = "No se pudo enviar el correo.";
                   });
                 }
               }
             },
-            child: const Text("Continue"),
+            child: const Text("Continuar"),
           ),
         ],
       ),

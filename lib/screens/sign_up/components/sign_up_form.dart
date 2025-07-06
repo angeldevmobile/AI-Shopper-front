@@ -5,7 +5,7 @@ import '../../../constants.dart';
 import '../../complete_profile/complete_profile_screen.dart';
 
 class SignUpForm extends StatefulWidget {
-  const SignUpForm({Key? key}) : super(key: key);
+  const SignUpForm({super.key});
 
   @override
   _SignUpFormState createState() => _SignUpFormState();
@@ -44,9 +44,9 @@ class _SignUpFormState extends State<SignUpForm> {
             keyboardType: TextInputType.emailAddress,
             onSaved: (newValue) => email = newValue,
             onChanged: (value) {
-              if (value.isNotEmpty)
+              if (value.isNotEmpty) {
                 removeError(error: kEmailNullError);
-              else if (emailValidatorRegExp.hasMatch(value))
+              } else if (emailValidatorRegExp.hasMatch(value))
                 removeError(error: kInvalidEmailError);
               return;
             },
@@ -72,9 +72,9 @@ class _SignUpFormState extends State<SignUpForm> {
             obscureText: true,
             onSaved: (newValue) => password = newValue,
             onChanged: (value) {
-              if (value.isNotEmpty)
+              if (value.isNotEmpty) {
                 removeError(error: kPassNullError);
-              else if (value.length >= 8)
+              } else if (value.length >= 8)
                 removeError(error: kShortPassError);
               password = value;
             },
@@ -100,9 +100,9 @@ class _SignUpFormState extends State<SignUpForm> {
             obscureText: true,
             onSaved: (newValue) => conform_password = newValue,
             onChanged: (value) {
-              if (value.isNotEmpty)
+              if (value.isNotEmpty) {
                 removeError(error: kPassNullError);
-              else if (value.isNotEmpty && password == conform_password)
+              } else if (value.isNotEmpty && password == conform_password)
                 removeError(error: kMatchPassError);
               conform_password = value;
             },

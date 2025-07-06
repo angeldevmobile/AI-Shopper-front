@@ -1,12 +1,34 @@
 import 'package:ai_shopper_online/screens/products/products_screen.dart';
 import 'package:flutter/material.dart';
 
+import '../../../services/api_service.dart';
 import 'section_title.dart';
 
 class SpecialOffers extends StatelessWidget {
-  const SpecialOffers({
-    super.key,
-  });
+  const SpecialOffers({super.key});
+
+  static const tecnologiaCategories = [
+    "smartphones",
+    "laptops",
+    "tablets",
+    "mobile-accessories",
+  ];
+
+  static const fashionCategories = [
+    "mens-shirts",
+    "mens-shoes",
+    "mens-watches",
+    "womens-bags",
+    "womens-dresses",
+    "womens-jewellery",
+    "womens-shoes",
+    "womens-watches",
+    "sunglasses",
+    "tops",
+    "beauty",
+    "fragrances",
+    "skin-care",
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -15,8 +37,20 @@ class SpecialOffers extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: SectionTitle(
-            title: "Special for you",
-            press: () {},
+            title: "Ofertas Especiales",
+            press: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder:
+                      (_) => ProductsScreen(
+                        fetchProducts:
+                            ProductService.fetchMostDiscountedProducts,
+                        title: "Ofertas Especiales",
+                      ),
+                ),
+              );
+            },
           ),
         ),
         SingleChildScrollView(
@@ -25,18 +59,42 @@ class SpecialOffers extends StatelessWidget {
             children: [
               SpecialOfferCard(
                 image: "assets/images/Image Banner 2.png",
-                category: "Smartphone",
-                numOfBrands: 18,
+                category: "Tecnología",
+                numOfBrands: tecnologiaCategories.length,
                 press: () {
-                  Navigator.pushNamed(context, ProductsScreen.routeName);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder:
+                          (_) => ProductsScreen(
+                            fetchProducts:
+                                () => ProductService.fetchProductsByCategories(
+                                  tecnologiaCategories,
+                                ),
+                            title: "Tecnología",
+                          ),
+                    ),
+                  );
                 },
               ),
               SpecialOfferCard(
                 image: "assets/images/Image Banner 3.png",
                 category: "Fashion",
-                numOfBrands: 24,
+                numOfBrands: fashionCategories.length,
                 press: () {
-                  Navigator.pushNamed(context, ProductsScreen.routeName);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder:
+                          (_) => ProductsScreen(
+                            fetchProducts:
+                                () => ProductService.fetchProductsByCategories(
+                                  fashionCategories,
+                                ),
+                            title: "Fashion",
+                          ),
+                    ),
+                  );
                 },
               ),
               const SizedBox(width: 20),
@@ -74,10 +132,7 @@ class SpecialOfferCard extends StatelessWidget {
             borderRadius: BorderRadius.circular(20),
             child: Stack(
               children: [
-                Image.asset(
-                  image,
-                  fit: BoxFit.cover,
-                ),
+                Image.asset(image, fit: BoxFit.cover),
                 Container(
                   decoration: const BoxDecoration(
                     gradient: LinearGradient(
@@ -108,7 +163,7 @@ class SpecialOfferCard extends StatelessWidget {
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        TextSpan(text: "$numOfBrands Brands")
+                        TextSpan(text: "$numOfBrands Brands"),
                       ],
                     ),
                   ),

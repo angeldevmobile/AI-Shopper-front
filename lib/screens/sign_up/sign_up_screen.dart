@@ -8,17 +8,16 @@ import 'components/sign_up_form.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:firebase_auth/firebase_auth.dart';
-//import '../complete_profile/complete_profile_screen.dart'; // Import CompleteProfileScreen
 
 class SignUpScreen extends StatelessWidget {
   static String routeName = "/sign_up";
 
-  SignUpScreen({Key? key}) : super(key: key);
+  const SignUpScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Sign Up")),
+      appBar: AppBar(title: const Text("Registrate")),
       body: SafeArea(
         child: SizedBox(
           width: double.infinity,
@@ -34,7 +33,7 @@ class SignUpScreen extends StatelessWidget {
                     textAlign: TextAlign.center,
                   ),
                   const SizedBox(height: 16),
-                  const SignUpForm(), // Este formulario es para el registro completo
+                  const SignUpForm(), 
                   const SizedBox(height: 16),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -53,7 +52,7 @@ class SignUpScreen extends StatelessWidget {
                                 await FirebaseAuth.instance.currentUser!
                                     .getIdToken();
                             final url = Uri.parse(
-                              'http://192.168.0.100:3000/usuarios/google-login',
+                              'http://192.168.56.1:3000/usuarios/google-login',
                             );
 
                             final response = await http.post(

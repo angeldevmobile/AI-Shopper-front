@@ -1,176 +1,141 @@
-import 'package:flutter/material.dart';
+class Review {
+  final int id;
+  final int idProducto;
+  final double rating;
+  final String comentario;
+  final String fecha;
+  final String nombreRevisor;
+  final String emailRevisor;
+
+  Review({
+    required this.id,
+    required this.idProducto,
+    required this.rating,
+    required this.comentario,
+    required this.fecha,
+    required this.nombreRevisor,
+    required this.emailRevisor,
+  });
+
+  factory Review.fromJson(Map<String, dynamic> json) {
+    double parseDouble(dynamic value) {
+      if (value == null) return 0.0;
+      if (value is double) return value;
+      if (value is int) return value.toDouble();
+      if (value is String) return double.tryParse(value) ?? 0.0;
+      return 0.0;
+    }
+
+    int parseInt(dynamic value) {
+      if (value == null) return 0;
+      if (value is int) return value;
+      if (value is String) return int.tryParse(value) ?? 0;
+      return 0;
+    }
+
+    return Review(
+      id: parseInt(json['id']),
+      idProducto: parseInt(json['producto_id'] ?? json['id_producto']),
+      rating: parseDouble(json['rating']),
+      comentario: json['comentario'] ?? '',
+      fecha: json['fecha'] ?? '',
+      nombreRevisor: json['nombre_revisor'] ?? '',
+      emailRevisor: json['email_revisor'] ?? '',
+    );
+  }
+}
 
 class Product {
   final int id;
-  final String title, description;
+  final String titulo;
+  final String descripcion;
   final List<String> images;
-  final List<Color> colors;
-  final double rating, price;
-  final bool isFavourite, isPopular;
+  final double rating;
+  final double precio;
+  final String thumbnail;
+  final int categoriaId;
+  final double descuento;
+  final int stock;
+  final String marca;
+  final String sku;
+  final double peso;
+  final String garantia;
+  final String envio;
+  final String estadoDisponibilidad;
+  final String politicaDevolucion;
+  final int cantidadMinima;
+  final List<Review> reviews;
 
   Product({
     required this.id,
+    required this.titulo,
+    required this.descripcion,
     required this.images,
-    required this.colors,
-    this.rating = 0.0,
-    this.isFavourite = false,
-    this.isPopular = false,
-    required this.title,
-    required this.price,
-    required this.description,
+    required this.rating,
+    required this.precio,
+    required this.thumbnail,
+    required this.categoriaId,
+    required this.descuento,
+    required this.stock,
+    required this.marca,
+    required this.sku,
+    required this.peso,
+    required this.garantia,
+    required this.envio,
+    required this.estadoDisponibilidad,
+    required this.politicaDevolucion,
+    required this.cantidadMinima,
+    required this.reviews,
   });
+
+  factory Product.fromJson(Map<String, dynamic> json) {
+    List<String> imagesList = [];
+    if (json['images'] != null) {
+      imagesList = List<String>.from(json['images']);
+    }
+
+    List<Review> reviewsList = [];
+    if (json['reviews'] != null) {
+      reviewsList = List<Map<String, dynamic>>.from(json['reviews'])
+          .map((r) => Review.fromJson(r))
+          .toList();
+    }
+
+    double parseDouble(dynamic value) {
+      if (value == null) return 0.0;
+      if (value is double) return value;
+      if (value is int) return value.toDouble();
+      if (value is String) return double.tryParse(value) ?? 0.0;
+      return 0.0;
+    }
+
+    int parseInt(dynamic value) {
+      if (value == null) return 0;
+      if (value is int) return value;
+      if (value is String) return int.tryParse(value) ?? 0;
+      return 0;
+    }
+
+    return Product(
+      id: parseInt(json['id']),
+      titulo: json['titulo'] ?? json['title'] ?? '',
+      descripcion: json['descripcion'] ?? json['description'] ?? '',
+      images: imagesList,
+      rating: parseDouble(json['rating']),
+      precio: parseDouble(json['precio']),
+      thumbnail: json['thumbnail'] ?? '',
+      categoriaId: parseInt(json['categoria_id']),
+      descuento: parseDouble(json['descuento']),
+      stock: parseInt(json['stock']),
+      marca: json['marca'] ?? '',
+      sku: json['sku'] ?? '',
+      peso: parseDouble(json['peso']),
+      garantia: json['garantia'] ?? '',
+      envio: json['envio'] ?? '',
+      estadoDisponibilidad: json['estado_disponibilidad'] ?? '',
+      politicaDevolucion: json['politica_devolucion'] ?? '',
+      cantidadMinima: parseInt(json['cantidad_minima']),
+      reviews: reviewsList,
+    );
+  }
 }
-
-// Our demo Products
-
-List<Product> demoProducts = [
-  Product(
-    id: 1,
-    images: [
-      "assets/images/ps4_console_white_1.png",
-      "assets/images/ps4_console_white_2.png",
-      "assets/images/ps4_console_white_3.png",
-      "assets/images/ps4_console_white_4.png",
-    ],
-    colors: [
-      const Color(0xFFF6625E),
-      const Color(0xFF836DB8),
-      const Color(0xFFDECB9C),
-      Colors.white,
-    ],
-    title: "Wireless Controller for PS4™",
-    price: 64.99,
-    description: description,
-    rating: 4.8,
-    isFavourite: true,
-    isPopular: true,
-  ),
-  Product(
-    id: 2,
-    images: [
-      "assets/images/Image Popular Product 2.png",
-    ],
-    colors: [
-      const Color(0xFFF6625E),
-      const Color(0xFF836DB8),
-      const Color(0xFFDECB9C),
-      Colors.white,
-    ],
-    title: "Nike Sport White - Man Pant",
-    price: 50.5,
-    description: description,
-    rating: 4.1,
-    isPopular: true,
-  ),
-  Product(
-    id: 3,
-    images: [
-      "assets/images/glap.png",
-    ],
-    colors: [
-      const Color(0xFFF6625E),
-      const Color(0xFF836DB8),
-      const Color(0xFFDECB9C),
-      Colors.white,
-    ],
-    title: "Gloves XC Omega - Polygon",
-    price: 36.55,
-    description: description,
-    rating: 4.1,
-    isFavourite: true,
-    isPopular: true,
-  ),
-  Product(
-    id: 4,
-    images: [
-      "assets/images/wireless headset.png",
-    ],
-    colors: [
-      const Color(0xFFF6625E),
-      const Color(0xFF836DB8),
-      const Color(0xFFDECB9C),
-      Colors.white,
-    ],
-    title: "Logitech Head",
-    price: 20.20,
-    description: description,
-    rating: 4.1,
-    isFavourite: true,
-  ),
-  Product(
-    id: 1,
-    images: [
-      "assets/images/ps4_console_white_1.png",
-      "assets/images/ps4_console_white_2.png",
-      "assets/images/ps4_console_white_3.png",
-      "assets/images/ps4_console_white_4.png",
-    ],
-    colors: [
-      const Color(0xFFF6625E),
-      const Color(0xFF836DB8),
-      const Color(0xFFDECB9C),
-      Colors.white,
-    ],
-    title: "Wireless Controller for PS4™",
-    price: 64.99,
-    description: description,
-    rating: 4.8,
-    isFavourite: true,
-    isPopular: true,
-  ),
-  Product(
-    id: 2,
-    images: [
-      "assets/images/Image Popular Product 2.png",
-    ],
-    colors: [
-      const Color(0xFFF6625E),
-      const Color(0xFF836DB8),
-      const Color(0xFFDECB9C),
-      Colors.white,
-    ],
-    title: "Nike Sport White - Man Pant",
-    price: 50.5,
-    description: description,
-    rating: 4.1,
-    isPopular: true,
-  ),
-  Product(
-    id: 3,
-    images: [
-      "assets/images/glap.png",
-    ],
-    colors: [
-      const Color(0xFFF6625E),
-      const Color(0xFF836DB8),
-      const Color(0xFFDECB9C),
-      Colors.white,
-    ],
-    title: "Gloves XC Omega - Polygon",
-    price: 36.55,
-    description: description,
-    rating: 4.1,
-    isFavourite: true,
-    isPopular: true,
-  ),
-  Product(
-    id: 4,
-    images: [
-      "assets/images/wireless headset.png",
-    ],
-    colors: [
-      const Color(0xFFF6625E),
-      const Color(0xFF836DB8),
-      const Color(0xFFDECB9C),
-      Colors.white,
-    ],
-    title: "Logitech Head",
-    price: 20.20,
-    description: description,
-    rating: 4.1,
-    isFavourite: true,
-  ),
-];
-
-const String description =
-    "Wireless Controller for PS4™ gives you what you want in your gaming from over precision control your games to sharing …";

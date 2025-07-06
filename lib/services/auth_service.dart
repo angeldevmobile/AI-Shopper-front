@@ -39,8 +39,8 @@ class AuthService {
   // Iniciar sesión con Google
   Future<Map<String, dynamic>?> signInWithGoogle() async {
     try {
-      final GoogleSignIn _googleSignIn = GoogleSignIn();
-      final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
+      final GoogleSignIn googleSignIn = GoogleSignIn();
+      final GoogleSignInAccount? googleUser = await googleSignIn.signIn();
       if (googleUser == null) return null;
 
       final GoogleSignInAuthentication googleAuth =
@@ -90,7 +90,7 @@ class AuthService {
   // Iniciar sesión con correo y contraseña
   static Future<bool> login(String email, String password) async {
     try {
-      final url = Uri.parse('http://192.168.0.100:3000/usuarios/login');
+      final url = Uri.parse('http://192.168.56.1:3000/usuarios/login');
       final response = await http.post(
         url,
         headers: {'Content-Type': 'application/json'},
@@ -115,7 +115,7 @@ class AuthService {
 
   // Solicitar recuperación de contraseña
   static Future<bool> solicitarRecuperacion(String correo) async {
-    final url = Uri.parse('http://192.168.0.100:3000/usuarios/forgot-password');
+    final url = Uri.parse('http://192.168.56.1:3000/usuarios/forgot-password');
     final response = await http.post(
       url,
       headers: {'Content-Type': 'application/json'},
